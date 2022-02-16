@@ -13,7 +13,7 @@ function App() {
   const url = 'http://52.26.193.201:3000/';
 
   const [productList, setProductList] = useState([]);
-  const [clickedProduct, setClickedProduct] = useState(false);
+  const [clickedProduct, setClickedProduct] = useState([]);
 
   useEffect(() => {
     fetchProductList()
@@ -35,6 +35,7 @@ function App() {
 
   let contextObj = {
     handleProductClick,
+    clickedProduct
 
 
   }

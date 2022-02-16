@@ -6,7 +6,20 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useContext } from 'react';
+import Modal from '@mui/material/Modal';
 import MyContext from '../context/MyContext'
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const bull = (
   <Box
@@ -19,7 +32,17 @@ const bull = (
 
 export default function BasicCard({item}) {
 
-  let {handleProductClick} = useContext(MyContext);
+  let {handleProductClick, clickededProduct} = useContext(MyContext);
+
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (id) => {
+    handleProductClick(id);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+
+
 
 
 
@@ -37,7 +60,19 @@ export default function BasicCard({item}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={(e) => handleProductClick(item.id)}>View Product</Button>
+      <div>
+      <Button onClick={(e) => {handleOpen(item.id)}}>View Product</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"      >
+        <Box sx={style}>
+          <img src={clickedProduct.results[0].photos[0].thumbnail_url} alt={clickededProduct.results.name}></img>
+
+        </Box>
+      </Modal>
+      </div>
       </CardActions>
     </Card>
   );
