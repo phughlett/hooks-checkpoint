@@ -1,24 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from "react";
+import ListDisplay from "./components/listDisplay";
+import React from 'react';
+
+
+
 
 function App() {
+  const MyContext = React.createContext();
+
+  const url = 'http://52.26.193.201:3000/';
+
+  const [productList, setProductList] = useState([]);
+  const [clickedProduct, setClickedProduct] = useState(false);
+
+  useEffect(() => {
+    fetchProductList()
+  }, [])
+
+  function fetchProductList(){
+    return fetch(`http://52.26.193.201:3000/products/list?page=1&count=1000`)
+    .then((response) => response.json())
+    .then((data) => setProductList(data))
+
+  }
+
+  function handleProductClick(id){
+    return fetch(url + 'products/' + id)
+    .then(response => response.json())
+    .then(data => setClickedProduct(data))
+
+  }
+
+  let contextObj = {
+    handleProductClick,
+
+
+  }
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContext.Provider value={contextObj}>
+      <div className="App">
+        <header className="App-header">
+          <ListDisplay productList={productList}/>
+        </header>
+
+
+      </div>
+    </MyContext.Provider>
   );
 }
 
