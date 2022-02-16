@@ -2,12 +2,13 @@ import './App.css';
 import { useState, useEffect } from "react";
 import ListDisplay from "./components/listDisplay";
 import React from 'react';
+import MyContext from './context/MyContext'
 
 
 
 
 function App() {
-  const MyContext = React.createContext();
+
 
   const url = 'http://52.26.193.201:3000/';
 
@@ -26,7 +27,7 @@ function App() {
   }
 
   function handleProductClick(id){
-    return fetch(url + 'products/' + id)
+    return fetch(url + 'products/' + id +'/styles')
     .then(response => response.json())
     .then(data => setClickedProduct(data))
 

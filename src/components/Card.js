@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useContext } from 'react';
+import MyContext from '../context/MyContext'
 
 const bull = (
   <Box
@@ -17,6 +18,8 @@ const bull = (
 );
 
 export default function BasicCard({item}) {
+
+  let {handleProductClick} = useContext(MyContext);
 
 
 
