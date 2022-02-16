@@ -50,8 +50,6 @@ function App() {
         <header className="App-header">
           <ListDisplay productList={productList}/>
         </header>
-
-
       </div>
     </MyContext.Provider>
   );

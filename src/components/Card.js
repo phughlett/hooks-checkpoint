@@ -38,6 +38,7 @@ export default function BasicCard({item}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (id) => {
     handleProductClick(id);
+    console.log(clickededProduct);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -68,8 +69,7 @@ export default function BasicCard({item}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"      >
         <Box sx={style}>
-          <img src={clickedProduct.results[0].photos[0].thumbnail_url} alt={clickededProduct.results.name}></img>
-
+           <img src="https://m.media-amazon.com/images/M/MV5BZmMxNmEzM2EtOGU1Mi00Y2UxLWFmZjAtNDZhMDU0YjI4NjFiXkEyXkFqcGdeQXVyOTc5MDI5NjE@._V1_.jpg" alt="" width="200" height="200"></img>
         </Box>
       </Modal>
       </div>
