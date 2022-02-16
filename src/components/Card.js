@@ -69,6 +69,9 @@ export default function BasicCard({item}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"      >
         <Box sx={style}>
+          <Typography>
+            {item.name}
+          </Typography>
            <img src="https://m.media-amazon.com/images/M/MV5BZmMxNmEzM2EtOGU1Mi00Y2UxLWFmZjAtNDZhMDU0YjI4NjFiXkEyXkFqcGdeQXVyOTc5MDI5NjE@._V1_.jpg" alt="" width="200" height="200"></img>
         </Box>
       </Modal>
